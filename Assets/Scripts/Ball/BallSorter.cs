@@ -66,8 +66,8 @@ namespace GDT.Ball
                     return new BubbleAlgorithm();
                 case AlgorithmType.Selection:
                     return new SelectionAlgorithm();
-                    //case AlgorithmType.Quick:
-                    //    return new QuickAlgorithm();
+                case AlgorithmType.Quick:
+                    return new QuickAlgorithm();
             }
         }
     }
