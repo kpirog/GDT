@@ -7,7 +7,7 @@ namespace GDT.Ball
         [SerializeField] private float spawnOffset = 1.5f;
         [SerializeField] private Ball ballPrefab;
 
-        private void Start()
+        private void Awake()
         {
             SpawnBalls(BallIndexer.IndexesArray);
         }

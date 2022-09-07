@@ -3,6 +3,7 @@ using GDT.Extensions;
 
 namespace GDT.Ball
 {
+    [DefaultExecutionOrder(-1)]
     public class BallIndexer : MonoBehaviour
     {
         [SerializeField] [Range(0, 100)] private int rangeOfNumbers;
