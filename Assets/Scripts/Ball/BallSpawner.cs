@@ -1,43 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using GDT.Extensions;
 
 namespace GDT.Ball
 {
     public class BallSpawner : MonoBehaviour
     {
-        [SerializeField] [Range(0, 100)] private int rangeOfNumbers;
-        [SerializeField] private int elementsCount;
-
+        [SerializeField] private float spawnOffset = 1.5f;
         [SerializeField] private Ball ballPrefab;
-
-        [SerializeField] private float spawnOffset = 0.5f;
-        //private int[] indexes;
 
         private void Start()
         {
-            //indexes.FillArrayRandomly(elementsCount, rangeOfNumbers);
-            SpawnBalls();
+            SpawnBalls(BallIndexer.IndexesArray);
         }
 
-        private Ball[] SpawnBalls()
+        public void SpawnBalls(int[] indexes)
         {
-            Ball[] spawnedBalls = new Ball[elementsCount];
-
-            for (int i = 0; i < elementsCount; i++)
+            for (int i = 0; i < indexes.Length; i++)
             {
                 Vector3 spawnPosition = transform.position;
                 spawnPosition.z += i * spawnOffset;
 
                 Ball ball = Instantiate(ballPrefab, spawnPosition, Quaternion.identity, transform);
-                //ball.Setup(indexes[i]);
-
-                spawnedBalls[i] = ball;
-
+                ball.Setup(indexes[i]);
             }
-
-            return spawnedBalls;
         }
     }
 }
