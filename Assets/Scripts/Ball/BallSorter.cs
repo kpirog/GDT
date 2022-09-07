@@ -6,6 +6,8 @@ namespace GDT.Ball
 {
     public class BallSorter : MonoBehaviour
     {
+        [SerializeField] private AlgorithmType algorithmType;
+        
         private IAlgorithm currentAlgorithm;
 
         private List<Ball> balls;
@@ -13,7 +15,7 @@ namespace GDT.Ball
 
         private void Awake()
         {
-            currentAlgorithm = new BubbleAlgorithm();
+            currentAlgorithm = SetChosenAlgorithm(algorithmType);
         }
 
         private void Start()
@@ -53,6 +55,20 @@ namespace GDT.Ball
             balls[indexTwo].transform.position = firstPosition;
             balls[indexTwo] = first;
             indexes[indexTwo] = firstIndex;
+        }
+
+        private IAlgorithm SetChosenAlgorithm(AlgorithmType type)
+        {
+            switch (type)
+            {
+                default:
+                case AlgorithmType.Bubble:
+                    return new BubbleAlgorithm();
+                case AlgorithmType.Selection:
+                    return new SelectionAlgorithm();
+                    //case AlgorithmType.Quick:
+                    //    return new QuickAlgorithm();
+            }
         }
     }
 }
