@@ -1,17 +1,16 @@
 using UnityEngine;
 
-namespace GDT.Ball
+namespace GDT.Elements
 {
     public class BallSpawner : MonoBehaviour
     {
         [SerializeField] private float spawnOffset = 1.5f;
         [SerializeField] private Ball ballPrefab;
-
         private void Awake()
         {
             SpawnBalls(BallIndexer.IndexesArray);
         }
-
+         
         public void SpawnBalls(int[] indexes)
         {
             for (int i = 0; i < indexes.Length; i++)

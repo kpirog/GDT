@@ -12,7 +12,7 @@ namespace GDT.Algorithms
                 {
                     if (indexes[j] > indexes[j + 1])
                     {
-                        Swap?.Invoke(j, (j + 1));
+                        Swap(j, (j + 1));
                     }
                 }
             }

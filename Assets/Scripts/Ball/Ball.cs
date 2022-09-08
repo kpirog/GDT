@@ -1,7 +1,7 @@
 using UnityEngine;
 using GDT.Extensions;
 
-namespace GDT.Ball
+namespace GDT.Elements
 {
     public class Ball : MonoBehaviour
     {
@@ -9,6 +9,10 @@ namespace GDT.Ball
 
         private int index;
         public int Index => index;
+
+        public bool isSorted = false;
+
+        public Vector3 desiredPos;
 
         public void Setup(int index)
         {

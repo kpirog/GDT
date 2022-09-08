@@ -1,7 +1,7 @@
 using UnityEngine;
 using GDT.Extensions;
 
-namespace GDT.Ball
+namespace GDT.Elements
 {
     [DefaultExecutionOrder(-1)]
     public class BallIndexer : MonoBehaviour

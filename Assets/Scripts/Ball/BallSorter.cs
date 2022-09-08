@@ -2,16 +2,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using GDT.Algorithms;
 
-namespace GDT.Ball
+namespace GDT.Elements
 {
     public class BallSorter : MonoBehaviour
     {
         [SerializeField] private AlgorithmType algorithmType;
-        
+
         private IAlgorithm currentAlgorithm;
 
         private List<Ball> balls;
         private int[] indexes;
+
+        public List<Ball> Balls => balls;
 
         private void Awake()
         {
@@ -40,23 +42,33 @@ namespace GDT.Ball
         private void StartSorting()
         {
             currentAlgorithm.Execute(SwapBalls, indexes);
+            SetDesiredPositions();
         }
 
         private void SwapBalls(int indexOne, int indexTwo)
         {
             Ball first = balls[indexOne];
-            Vector3 firstPosition = first.GetPosition();
             int firstIndex = indexes[indexOne];
 
-            balls[indexOne].transform.position = balls[indexTwo].GetPosition();
             balls[indexOne] = balls[indexTwo];
             indexes[indexOne] = indexes[indexTwo];
 
-            balls[indexTwo].transform.position = firstPosition;
             balls[indexTwo] = first;
             indexes[indexTwo] = firstIndex;
         }
+        private void SetDesiredPositions()
+        {
+            foreach (Ball ball in balls)
+            {
+                ball.desiredPos = new Vector3(ball.transform.position.x, ball.transform.position.y, (float)balls.IndexOf(ball));
 
+                if (ball.transform.position == ball.desiredPos)
+                {
+                    ball.isSorted = true;
+                    Debug.Log("jest posortowany juz");
+                }
+            }
+        }
         private IAlgorithm SetChosenAlgorithm(AlgorithmType type)
         {
             switch (type)
