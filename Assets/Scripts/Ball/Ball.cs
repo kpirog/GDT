@@ -5,6 +5,7 @@ namespace GDT.Elements
 {
     public class Ball : MonoBehaviour
     {
+        [SerializeField] private BallView ballView;
         [SerializeField] private MeshRenderer meshRenderer;
 
         private int index;
@@ -35,6 +36,7 @@ namespace GDT.Elements
         public void SetIndex(int index)
         {
             this.index = index;
+            ballView.SetViewData(index);
         }
     }
 }

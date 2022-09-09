@@ -82,6 +82,7 @@ namespace GDT.Character
             yield return StartCoroutine(characterAnimation.PickUp());
             ball.transform.SetParent(ballSorter.transform);
             ball.transform.position = ball.desiredPos;
+            ball.transform.rotation = Quaternion.identity;
             ball.isSorted = true;
         }
 
