@@ -39,10 +39,6 @@ namespace GDT.UI
         {
             EventManager.OnGameStarted();
         }
-        public void OptionsButton()
-        {
-
-        }
         public void ExitButton()
         {
             Application.Quit();
