@@ -16,10 +16,10 @@ namespace GDT.Character
         {
             anim = GetComponent<Animator>();
         }
-        public IEnumerator MoveTo(Vector3 targetPosition)
+        public IEnumerator MoveTo(float zAxis)
         {
             yield return transform
-                .DOMoveZ(targetPosition.z, moveAnimationTime)
+                .DOMoveZ(zAxis, moveAnimationTime)
                 .WaitForCompletion();
         }
         public IEnumerator PickUp()

@@ -26,6 +26,12 @@ namespace GDT.Elements
             return transform.position;
         }
 
+        public void ResetPositionAndRotation()
+        {
+            transform.localPosition = Vector3.zero;
+            transform.localRotation = Quaternion.identity;
+        }
+
         public void SetIndex(int index)
         {
             this.index = index;

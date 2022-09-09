@@ -36,7 +36,7 @@ namespace GDT.Character
 
             if (!hasBall)
             {
-                yield return StartCoroutine(MoveTo(firstBall.transform.position.z));
+                yield return StartCoroutine(characterAnimation.MoveTo(firstBall.transform.position.z));
                 yield return StartCoroutine(PickupBall(firstBall, true));
             }
 
@@ -44,17 +44,21 @@ namespace GDT.Character
 
             if (secondBall != null)
             {
-                yield return StartCoroutine(MoveTo(secondBall.transform.position.z));
+                yield return StartCoroutine(characterAnimation.MoveTo(secondBall.transform.position.z));
                 yield return StartCoroutine(PickupBall(secondBall, false));
                 yield return StartCoroutine(PutDownBall(firstBall));
+                
                 hasBall = true;
                 currentBallIndex = ballSorter.Balls.IndexOf(secondBall);
-                secondBall.transform.SetParent(rightHandSlot);
+                
+                secondBall.transform.SetParent(rightHandSlot, true);
+                secondBall.ResetPositionAndRotation();
             }
             else
             {
-                yield return StartCoroutine(MoveTo(firstBall.desiredPos.z));
+                yield return StartCoroutine(characterAnimation.MoveTo(firstBall.desiredPos.z));
                 yield return StartCoroutine(PutDownBall(firstBall));
+                
                 hasBall = false;
                 currentBallIndex = GetFirstUnsortedBallIndex();
             }
@@ -84,12 +88,8 @@ namespace GDT.Character
         private IEnumerator PickupBall(Ball ball, bool rightHand)
         {
             yield return StartCoroutine(characterAnimation.PickUp());
-            ball.transform.SetParent(rightHand ? rightHandSlot : leftHandSlot);
-        }
-        private IEnumerator MoveTo(float zAxis)
-        {
-            Vector3 targetPosition = new Vector3(transform.position.x, transform.position.y, zAxis);
-            yield return StartCoroutine(characterAnimation.MoveTo(targetPosition));
+            ball.transform.SetParent(rightHand ? rightHandSlot : leftHandSlot, true);
+            ball.ResetPositionAndRotation();
         }
 
         private Ball GetBallOnDesiredPosition(Ball firstBall)
