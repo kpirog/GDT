@@ -15,21 +15,30 @@ namespace GDT.Elements
 
         private void Start()
         {
+            GetIndexes();
+
+            balls = new List<Ball>(GetComponentsInChildren<Ball>());
+
+            EventManager.onGameStartedEvent += StartSorting;
+            EventManager.onMenuOpenedEvent += ResetBallsIndexes;
+            EventManager.onGameRestartedEvent += ResetBallsIndexes;
+        }
+
+        private void GetIndexes()
+        {
             indexes = new int[BallIndexer.IndexesArray.Length];
 
             for (int i = 0; i < BallIndexer.IndexesArray.Length; i++)
             {
                 indexes[i] = BallIndexer.IndexesArray[i];
             }
-
-            balls = new List<Ball>(GetComponentsInChildren<Ball>());
-
-            EventManager.onGameStartedEvent += StartSorting;
         }
 
         private void OnDisable()
         {
             EventManager.onGameStartedEvent -= StartSorting;
+            EventManager.onMenuOpenedEvent -= ResetBallsIndexes;
+            EventManager.onGameRestartedEvent -= ResetBallsIndexes;
         }
 
         private void StartSorting()        
@@ -58,10 +67,20 @@ namespace GDT.Elements
                 if (ball.transform.position == ball.desiredPos)
                 {
                     ball.isSorted = true;
-                    Debug.Log("jest posortowany juz");
                 }
             }
         }
+
+        private void ResetBallsIndexes()
+        {
+            GetIndexes();
+
+            for (int i = 0; i < balls.Count; i++)
+            {
+                balls[i].Setup(indexes[i]);
+            }
+        }
+
         public void SetAlgorithm(AlgorithmType type)
         {
             switch (type)

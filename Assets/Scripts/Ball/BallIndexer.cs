@@ -14,8 +14,28 @@ namespace GDT.Elements
 
         private void Awake()
         {
+            GenerateRandomIndexes();
+        }
+        private void OnEnable()
+        {
+            EventManager.onMenuOpenedEvent += GenerateRandomIndexes;
+            EventManager.onGameRestartedEvent += GenerateRandomIndexes; 
+        }
+        private void OnDisable()
+        {
+            EventManager.onMenuOpenedEvent += GenerateRandomIndexes;
+            EventManager.onGameRestartedEvent += GenerateRandomIndexes;
+        }
+        private void GenerateRandomIndexes()
+        {
             indexesArray = new int[elementsCount];
             indexesArray.FillArrayRandomly(rangeOfNumbers);
+
+            foreach (var item in indexesArray)
+            {
+                Debug.Log(item);
+            }
+            
         }
     }
 }

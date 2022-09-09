@@ -17,18 +17,24 @@ namespace GDT.Character
 
         private int currentBallIndex = 0;
         private bool hasBall = false;
+        private Vector3 startPosition;
 
         private void Awake()
         {
             characterAnimation = GetComponent<CharacterAnimation>();;
+            startPosition = transform.position;
         }
         private void OnEnable()
         {
             EventManager.onGameStartedEvent += StartSorting;
+            EventManager.onMenuOpenedEvent += StopSorting;
+            EventManager.onGameRestartedEvent += ResetToStartSettings;
         }
         private void OnDisable()
         {
             EventManager.onGameStartedEvent -= StartSorting;
+            EventManager.onMenuOpenedEvent -= StopSorting;
+            EventManager.onGameRestartedEvent -= ResetToStartSettings;
         }
         private void Update()
         {
@@ -108,6 +114,17 @@ namespace GDT.Character
         }
         private void StartSorting()
         {
+            isSorting = true;
+        }
+        private void StopSorting()
+        {
+            isSorting = false;
+            transform.position = startPosition;
+            StopAllCoroutines();
+        }
+        private void ResetToStartSettings()
+        {
+            transform.position = startPosition;
             isSorting = true;
         }
     }
