@@ -198,7 +198,6 @@ GameObject:
   m_Component:
   - component: {fileID: 211153991903298807}
   - component: {fileID: 6056787050163641997}
-  - component: {fileID: 388596078124091899}
   - component: {fileID: 388596078124091898}
   - component: {fileID: 6056787050163641996}
   m_Layer: 0
@@ -245,19 +244,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &388596078124091899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 695238533559688781}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b26340539c90e504699449f51b039d32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  smoothDampSpeed: 0.03
 --- !u!114 &388596078124091898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,6 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69c1b275f4bed3848af3d4daf72416dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveAnimationTime: 1
 --- !u!114 &6056787050163641996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,7 +270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballSorter: {fileID: 0}
-  canSort: 0
+  isSorting: 0
   rightHandSlot: {fileID: 388596076389041256}
   leftHandSlot: {fileID: 388596076966213087}
 --- !u!1 &1005913564938690480

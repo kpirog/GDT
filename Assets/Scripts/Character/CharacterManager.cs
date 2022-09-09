@@ -14,15 +14,13 @@ namespace GDT.Character
         [SerializeField] private Transform leftHandSlot;
 
         private CharacterAnimation characterAnimation;
-        private CharacterMovement characterMovement;
 
         private int currentBallIndex = 0;
         private bool hasBall = false;
 
         private void Awake()
         {
-            characterAnimation = GetComponent<CharacterAnimation>();
-            characterMovement = GetComponent<CharacterMovement>();
+            characterAnimation = GetComponent<CharacterAnimation>();;
         }
         private void Update()
         {
@@ -91,7 +89,7 @@ namespace GDT.Character
         private IEnumerator MoveTo(float zAxis)
         {
             Vector3 targetPosition = new Vector3(transform.position.x, transform.position.y, zAxis);
-            yield return StartCoroutine(characterMovement.MoveTo(targetPosition));
+            yield return StartCoroutine(characterAnimation.MoveTo(targetPosition));
         }
 
         private Ball GetBallOnDesiredPosition(Ball firstBall)
