@@ -22,6 +22,14 @@ namespace GDT.Character
         {
             characterAnimation = GetComponent<CharacterAnimation>();;
         }
+        private void OnEnable()
+        {
+            EventManager.onGameStartedEvent += StartSorting;
+        }
+        private void OnDisable()
+        {
+            EventManager.onGameStartedEvent -= StartSorting;
+        }
         private void Update()
         {
             if (CanSort() && isSorting)
@@ -63,7 +71,6 @@ namespace GDT.Character
                 currentBallIndex = GetFirstUnsortedBallIndex();
             }
 
-
             isSorting = true;
         }
 
@@ -98,6 +105,10 @@ namespace GDT.Character
             return ballSorter.Balls
                 .Where(x => x.transform.position == firstBall.desiredPos && x != firstBall)
                 .FirstOrDefault();
+        }
+        private void StartSorting()
+        {
+            isSorting = true;
         }
     }
 }

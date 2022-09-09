@@ -6,19 +6,12 @@ namespace GDT.Elements
 {
     public class BallSorter : MonoBehaviour
     {
-        [SerializeField] private AlgorithmType algorithmType;
-
         private IAlgorithm currentAlgorithm;
 
         private List<Ball> balls;
         private int[] indexes;
 
         public List<Ball> Balls => balls;
-
-        private void Awake()
-        {
-            currentAlgorithm = SetChosenAlgorithm(algorithmType);
-        }
 
         private void Start()
         {
@@ -30,16 +23,16 @@ namespace GDT.Elements
             }
 
             balls = new List<Ball>(GetComponentsInChildren<Ball>());
+
+            EventManager.onGameStartedEvent += StartSorting;
         }
 
-        private void Update()
+        private void OnDisable()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                StartSorting();
-            }
+            EventManager.onGameStartedEvent -= StartSorting;
         }
-        private void StartSorting()
+
+        private void StartSorting()        
         {
             currentAlgorithm.Execute(SwapBalls, indexes);
             SetDesiredPositions();
@@ -69,17 +62,20 @@ namespace GDT.Elements
                 }
             }
         }
-        private IAlgorithm SetChosenAlgorithm(AlgorithmType type)
+        public void SetAlgorithm(AlgorithmType type)
         {
             switch (type)
             {
                 default:
                 case AlgorithmType.Bubble:
-                    return new BubbleAlgorithm();
+                    currentAlgorithm = new BubbleAlgorithm();
+                    break;
                 case AlgorithmType.Selection:
-                    return new SelectionAlgorithm();
+                    currentAlgorithm =  new SelectionAlgorithm();
+                    break;
                 case AlgorithmType.Quick:
-                    return new QuickAlgorithm();
+                    currentAlgorithm = new QuickAlgorithm();
+                    break;
             }
         }
     }

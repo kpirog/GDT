@@ -6,19 +6,19 @@ namespace GDT.UI
 {
     public class MainMenu : MonoBehaviour
     {
+        [SerializeField] private GameObject menuPanel;
         [SerializeField] private RectTransform titleTransform;
         [SerializeField] private TextMeshProUGUI titleText;
+        [SerializeField] private TMP_Dropdown algorithmDropdown;
         [SerializeField] private float titleAnimationDuration = 2f;
+
+        public int DropdownValue => algorithmDropdown.value;
 
         private void Start()
         {
             TitleAnimation();
         }
 
-        private void Update()
-        {
-            
-        }
         private void TitleAnimation()
         {
             Sequence titleAnimationSequence = DOTween.Sequence();
@@ -35,9 +35,21 @@ namespace GDT.UI
                 .Append(titleText.DOColor(Color.white, titleAnimationDuration))
                 .SetLoops(-1, LoopType.Restart);
         }
+        public void StartButton()
+        {
+            EventManager.OnGameStarted();
+        }
+        public void OptionsButton()
+        {
+
+        }
         public void ExitButton()
         {
             Application.Quit();
+        }
+        public void TogglePanel(bool open)
+        {
+            menuPanel.SetActive(open);
         }
     }
 }
