@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-namespace GDT.Elements
+namespace GDT.BallSpace
 {
     public class BallView : MonoBehaviour
     {

@@ -1,7 +1,7 @@
 using UnityEngine;
-using GDT.Extensions;
+using GDT.Core;
 
-namespace GDT.Elements
+namespace GDT.BallSpace
 {
     public class Ball : MonoBehaviour
     {
@@ -14,9 +14,8 @@ namespace GDT.Elements
         private int index;
         public int Index => index;
 
-        public bool isSorted = false;
-
-        public Vector3 desiredPos;
+        [HideInInspector] public bool isSorted = false;
+        [HideInInspector] public Vector3 desiredPos;
 
         private void Awake()
         {
@@ -59,6 +58,7 @@ namespace GDT.Elements
             this.index = index;
             ballView.SetViewData(index);
         }
+
         private void ResetToStartSettings()
         {
             transform.SetParent(ballSorter.transform, true);

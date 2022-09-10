@@ -9,6 +9,7 @@ namespace GDT.Algorithms
         {
             QuickSort(indexes, 0, indexes.Length - 1, Swap);
         }
+
         private void QuickSort(int[] indexes, int left, int right, Action<int, int> Swap)
         {
             int i = left;

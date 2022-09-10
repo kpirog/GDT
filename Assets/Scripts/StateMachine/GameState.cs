@@ -1,3 +1,4 @@
+using GDT.Core;
 using UnityEngine;
 
 namespace GDT.Statemachine.States
@@ -11,7 +12,6 @@ namespace GDT.Statemachine.States
         
         public override void EnterState()
         {
-            Debug.Log("Game State");
             EventManager.onGamePausedEvent += PauseGame;
             EventManager.onSortingFinishedEvent += FinishGame;
         }
@@ -22,14 +22,11 @@ namespace GDT.Statemachine.States
             EventManager.onSortingFinishedEvent -= FinishGame;
         }
 
-        public override void UpdateState()
-        {
-            
-        }
         private void PauseGame()
         {
             stateMachine.SwitchState(new PauseState(stateMachine));
         }
+
         private void FinishGame()
         {
             stateMachine.SwitchState(new FinishState(stateMachine));

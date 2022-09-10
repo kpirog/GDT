@@ -18,12 +18,14 @@ namespace GDT.Character
         {
             anim = GetComponent<Animator>();
         }
+
         public IEnumerator MoveTo(float zAxis)
         {
             yield return transform
                 .DOMoveZ(zAxis, moveAnimationTime)
                 .WaitForCompletion();
         }
+
         public IEnumerator PickUp()
         {
             animationFinished = false;
@@ -34,10 +36,12 @@ namespace GDT.Character
                 yield return null;
             }
         }
+
         public void FinishAnimation() //animation Event
         {
             animationFinished = true;
         }
+
         public void ResetAnimator()
         {
             anim.Play(idleKey);

@@ -1,7 +1,8 @@
-using GDT.Elements;
 using GDT.Statemachine.States;
 using GDT.UI;
 using GDT.Algorithms;
+using GDT.BallSpace;
+using GDT.Core;
 using UnityEngine;
 
 namespace GDT.Statemachine
@@ -19,13 +20,7 @@ namespace GDT.Statemachine
         {
             SwitchState(new MenuState(this));
         }
-        private void Update()
-        {
-            if (currentState != null)
-            {
-                currentState.UpdateState();
-            }
-        }
+
         public void SwitchState(BaseState newState)
         {
             if (currentState != null)
@@ -36,20 +31,24 @@ namespace GDT.Statemachine
             currentState = newState;
             currentState.EnterState();
         }
+
         public void SetChosenAlgorithm()
         {
             AlgorithmType algorithmType = (AlgorithmType)mainMenu.DropdownValue;
             ballSorter.SetAlgorithm(algorithmType);
             gameInfoUI.SetAlgorithmView(algorithmType.ToString());
         }
+
         public void ToggleMenu(bool open)
         {
             mainMenu.TogglePanel(open);
         }
+
         public void OpenFinishMenu()
         {
             finishMenu.TogglePanel(true);
         }
+
         private void OnDestroy()
         {
             currentState.ExitState();

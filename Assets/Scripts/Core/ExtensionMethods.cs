@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace GDT.Extensions
+namespace GDT.Core
 {
     public static class ExtensionMethods
     {
@@ -13,6 +13,7 @@ namespace GDT.Extensions
                 array[i] = Random.Range(1, range);
             }
         }
+
         public static Color SetSaturation(this Color color, int saturation)
         {
             Color.RGBToHSV(color, out float h, out float s, out float v);

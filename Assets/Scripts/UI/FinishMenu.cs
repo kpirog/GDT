@@ -1,4 +1,5 @@
 using UnityEngine;
+using GDT.Core;
 using TMPro; 
 
 namespace GDT.UI
@@ -7,7 +8,6 @@ namespace GDT.UI
     {
         [SerializeField] private GameObject finishPanel;
         [SerializeField] private TextMeshProUGUI sortingTimeText;
-        [SerializeField] private SortingTimer sortingTimer;
 
         public void RestartButton()
         {
@@ -15,19 +15,21 @@ namespace GDT.UI
             EventManager.OnGameStarted();
             TogglePanel(false);
         }
+
         public void MainMenuButton()
         {
             EventManager.OnMenuOpened();
             TogglePanel(false);
         }
+
         public void TogglePanel(bool open)
         {
             finishPanel.SetActive(open);
-            SetTimeText();
         }
-        private void SetTimeText()
+
+        public void SetTimeText(float time)
         {
-            sortingTimeText.text = sortingTimer.SortingTime.ToString("0.00");
+            sortingTimeText.text = time.ToString("0.00");
         }
     }
 }

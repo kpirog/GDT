@@ -17,14 +17,17 @@ namespace GDT.Audio
         {
             uiAudioSource.PlayOneShot(buttonSFX);
         }
+
         public void SetMasterVolume(float value)
         {
             audioMixer.SetFloat(MASTER_KEY, Mathf.Log10(value) * 20f);
         }
+
         public void SetMusicVolume(float value)
         {
             audioMixer.SetFloat(MUSIC_KEY, Mathf.Log10(value) * 20f);
         }
+
         public void SetUIVolume(float value)
         {
             audioMixer.SetFloat(UI_KEY, Mathf.Log10(value) * 20f);

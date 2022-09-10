@@ -1,0 +1,19 @@
+{
+    "name": "StateMachine",
+    "rootNamespace": "",
+    "references": [
+        "GUID:5a7d8fa9c8571934bbbb87915b45a7ba",
+        "GUID:68cc54ac82b38254295f6bb74d398990",
+        "GUID:55e508db890783d46a0db41030d1918f",
+        "GUID:5af95c5fd4c6ebd4e843071e7b4ebc50"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

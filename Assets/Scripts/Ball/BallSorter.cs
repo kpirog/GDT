@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GDT.Algorithms;
+using GDT.Core;
 
-namespace GDT.Elements
+namespace GDT.BallSpace
 {
     public class BallSorter : MonoBehaviour
     {

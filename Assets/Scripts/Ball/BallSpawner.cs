@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace GDT.Elements
+namespace GDT.BallSpace
 {
     public class BallSpawner : MonoBehaviour
     {

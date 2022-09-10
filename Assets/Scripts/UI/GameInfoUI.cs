@@ -12,6 +12,7 @@ namespace GDT.UI
         {
             sortingTimeText.text = $"Time: {time.ToString("0.00")}";
         }
+
         public void SetAlgorithmView(string algorithmName)
         {
             currentAlgorithmText.text = algorithmName + " Sort";

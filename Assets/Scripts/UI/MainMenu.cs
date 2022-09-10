@@ -1,4 +1,5 @@
 using UnityEngine;
+using GDT.Core;
 using TMPro;
 using DG.Tweening;
 
@@ -35,14 +36,17 @@ namespace GDT.UI
                 .Append(titleText.DOColor(Color.white, titleAnimationDuration))
                 .SetLoops(-1, LoopType.Restart);
         }
+
         public void StartButton()
         {
             EventManager.OnGameStarted();
         }
+
         public void ExitButton()
         {
             Application.Quit();
         }
+
         public void TogglePanel(bool open)
         {
             menuPanel.SetActive(open);

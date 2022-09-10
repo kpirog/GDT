@@ -1,7 +1,7 @@
 using UnityEngine;
-using GDT.Extensions;
+using GDT.Core;
 
-namespace GDT.Elements
+namespace GDT.BallSpace
 {
     [DefaultExecutionOrder(-1)]
     public class BallIndexer : MonoBehaviour
@@ -16,16 +16,19 @@ namespace GDT.Elements
         {
             GenerateRandomIndexes();
         }
+
         private void OnEnable()
         {
             EventManager.onMenuOpenedEvent += GenerateRandomIndexes;
             EventManager.onGameRestartedEvent += GenerateRandomIndexes; 
         }
+
         private void OnDisable()
         {
             EventManager.onMenuOpenedEvent += GenerateRandomIndexes;
             EventManager.onGameRestartedEvent += GenerateRandomIndexes;
         }
+
         private void GenerateRandomIndexes()
         {
             indexesArray = new int[elementsCount];

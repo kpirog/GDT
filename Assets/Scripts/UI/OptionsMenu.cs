@@ -13,10 +13,12 @@ namespace GDT.UI
         {
             masterVolumeText.text = (volume * 100f).ToString("0.0");
         }
+
         public void UpdateMusicVolume(float volume)
         {
             musicVolumeText.text = (volume * 100f).ToString("0.0");
         }
+
         public void UpdateUIVolume(float volume)
         {
             uiVolumeText.text = (volume * 100f).ToString("0.0");

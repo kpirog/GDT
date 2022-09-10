@@ -1,4 +1,5 @@
-using GDT.Elements;
+using GDT.BallSpace;
+using GDT.Core;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
@@ -8,34 +9,37 @@ namespace GDT.Character
     public class CharacterManager : MonoBehaviour
     {
         [SerializeField] private BallSorter ballSorter;
-        [SerializeField] private bool isSorting = false;
-
         [SerializeField] private Transform rightHandSlot;
         [SerializeField] private Transform leftHandSlot;
 
         private CharacterAnimation characterAnimation;
 
-        private int currentBallIndex = 0;
         private bool hasBall = false;
+        private bool isSorting = false;
+
+        private int currentBallIndex = 0;
         private Vector3 startPosition;
 
         private void Awake()
         {
-            characterAnimation = GetComponent<CharacterAnimation>(); ;
+            characterAnimation = GetComponent<CharacterAnimation>(); 
             startPosition = transform.position;
         }
+
         private void OnEnable()
         {
             EventManager.onGameStartedEvent += ResetToStartSettings;
             EventManager.onGameRestartedEvent += ResetToStartSettings;
             EventManager.onMenuOpenedEvent += StopSorting;
         }
+
         private void OnDisable()
         {
             EventManager.onGameStartedEvent -= ResetToStartSettings;
             EventManager.onGameRestartedEvent -= ResetToStartSettings;
             EventManager.onMenuOpenedEvent -= StopSorting;
         }
+
         private void Update()
         {
             if (CanSort() && isSorting)
@@ -44,6 +48,7 @@ namespace GDT.Character
                 isSorting = false;
             }
         }
+
         private IEnumerator DoSort()
         {
             Ball firstBall = ballSorter.Balls[currentBallIndex];
@@ -117,6 +122,7 @@ namespace GDT.Character
                 .Where(x => x.transform.position == firstBall.desiredPos && x != firstBall)
                 .FirstOrDefault();
         }
+
         private void ResetToStartSettings()
         {
             StopAllCoroutines();

@@ -1,39 +1,41 @@
+using GDT.Core;
 using UnityEngine;
 
 namespace GDT.Statemachine.States
 {
-    public class FinishState : BaseState
+    public class PauseState : BaseState
     {
-        public FinishState(GameStateMachine stateMachine) : base(stateMachine)
+        public PauseState(GameStateMachine stateMachine) : base(stateMachine)
         {
 
         }
 
         public override void EnterState()
         {
-            Debug.Log("Finish state");
-            stateMachine.OpenFinishMenu();
-            Time.timeScale = 0f;
+            EventManager.onGameResumedEvent += ResumeGame;
             EventManager.onMenuOpenedEvent += BackToMainMenu;
             EventManager.onGameRestartedEvent += RestartGame;
+            Time.timeScale = 0f;
         }
 
         public override void ExitState()
         {
-            Time.timeScale = 1f;
+            EventManager.onGameResumedEvent -= ResumeGame;
             EventManager.onMenuOpenedEvent -= BackToMainMenu;
             EventManager.onGameRestartedEvent -= RestartGame;
+            Time.timeScale = 1f;
         }
 
-        public override void UpdateState()
+        private void ResumeGame()
         {
-
+            stateMachine.SwitchState(new GameState(stateMachine));
         }
 
         private void BackToMainMenu()
         {
             stateMachine.SwitchState(new MenuState(stateMachine));
         }
+
         private void RestartGame()
         {
             stateMachine.SwitchState(new GameState(stateMachine));
