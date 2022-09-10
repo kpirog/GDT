@@ -10,7 +10,7 @@ namespace GDT.UI
 
         public void SetTimeView(float time)
         {
-            sortingTimeText.text = time.ToString("0.00");
+            sortingTimeText.text = $"Time: {time.ToString("0.00")}";
         }
         public void SetAlgorithmView(string algorithmName)
         {

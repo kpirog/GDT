@@ -26,15 +26,15 @@ namespace GDT.Character
         }
         private void OnEnable()
         {
-            EventManager.onGameStartedEvent += StartSorting;
-            EventManager.onMenuOpenedEvent += StopSorting;
+            EventManager.onGameStartedEvent += ResetToStartSettings;
             EventManager.onGameRestartedEvent += ResetToStartSettings;
+            EventManager.onMenuOpenedEvent += StopSorting;
         }
         private void OnDisable()
         {
-            EventManager.onGameStartedEvent -= StartSorting;
-            EventManager.onMenuOpenedEvent -= StopSorting;
+            EventManager.onGameStartedEvent -= ResetToStartSettings;
             EventManager.onGameRestartedEvent -= ResetToStartSettings;
+            EventManager.onMenuOpenedEvent -= StopSorting;
         }
         private void Update()
         {
@@ -112,16 +112,6 @@ namespace GDT.Character
                 .Where(x => x.transform.position == firstBall.desiredPos && x != firstBall)
                 .FirstOrDefault();
         }
-        private void StartSorting()
-        {
-            isSorting = true;
-        }
-        private void StopSorting()
-        {
-            isSorting = false;
-            transform.position = startPosition;
-            StopAllCoroutines();
-        }
         private void ResetToStartSettings()
         {
             StopAllCoroutines();
@@ -130,6 +120,11 @@ namespace GDT.Character
             currentBallIndex = 0;
             transform.position = startPosition;
             characterAnimation.ResetAnimator();
+        }
+        private void StopSorting()
+        {
+            StopAllCoroutines();
+            isSorting = false;
         }
     }
 }
