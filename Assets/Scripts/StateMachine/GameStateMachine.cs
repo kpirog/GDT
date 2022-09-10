@@ -10,6 +10,7 @@ namespace GDT.Statemachine
     {
         [SerializeField] private MainMenu mainMenu;
         [SerializeField] private BallSorter ballSorter;
+        [SerializeField] private GameInfoUI gameInfoUI;
         
         private BaseState currentState;
 
@@ -36,7 +37,9 @@ namespace GDT.Statemachine
         }
         public void SetChosenAlgorithm()
         {
-            ballSorter.SetAlgorithm((AlgorithmType)mainMenu.DropdownValue);
+            AlgorithmType algorithmType = (AlgorithmType)mainMenu.DropdownValue;
+            ballSorter.SetAlgorithm(algorithmType);
+            gameInfoUI.SetAlgorithmView(algorithmType.ToString());
         }
         public void ToggleMenu(bool open)
         {
