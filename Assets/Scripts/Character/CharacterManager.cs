@@ -124,8 +124,12 @@ namespace GDT.Character
         }
         private void ResetToStartSettings()
         {
-            transform.position = startPosition;
+            StopAllCoroutines();
             isSorting = true;
+            hasBall = false;
+            currentBallIndex = 0;
+            transform.position = startPosition;
+            characterAnimation.ResetAnimator();
         }
     }
 }

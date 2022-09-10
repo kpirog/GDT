@@ -9,6 +9,8 @@ namespace GDT.Character
         [SerializeField] private float moveAnimationTime = 1f;
 
         private int pickupKey = Animator.StringToHash("PickUp");
+        private int idleKey = Animator.StringToHash("Idle");
+        
         private bool animationFinished;
         private Animator anim;
 
@@ -35,6 +37,10 @@ namespace GDT.Character
         public void FinishAnimation() //animation Event
         {
             animationFinished = true;
+        }
+        public void ResetAnimator()
+        {
+            anim.Play(idleKey);
         }
     }
 }
