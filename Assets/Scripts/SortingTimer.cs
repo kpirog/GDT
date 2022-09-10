@@ -9,6 +9,8 @@ public class SortingTimer : MonoBehaviour
     private float sortingTime = 0f;
     private float savedTime = 0f;
 
+    public float SortingTime => sortingTime;
+
     private void OnEnable()
     {
         EventManager.onGameStartedEvent += RestartTimer;

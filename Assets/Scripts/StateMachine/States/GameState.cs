@@ -13,11 +13,13 @@ namespace GDT.Statemachine.States
         {
             Debug.Log("Game State");
             EventManager.onGamePausedEvent += PauseGame;
+            EventManager.onSortingFinishedEvent += FinishGame;
         }
 
         public override void ExitState()
         {
             EventManager.onGamePausedEvent -= PauseGame;
+            EventManager.onSortingFinishedEvent -= FinishGame;
         }
 
         public override void UpdateState()
@@ -27,6 +29,10 @@ namespace GDT.Statemachine.States
         private void PauseGame()
         {
             stateMachine.SwitchState(new PauseState(stateMachine));
+        }
+        private void FinishGame()
+        {
+            stateMachine.SwitchState(new FinishState(stateMachine));
         }
     }
 }

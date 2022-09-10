@@ -11,6 +11,7 @@ namespace GDT.Statemachine
         [SerializeField] private MainMenu mainMenu;
         [SerializeField] private BallSorter ballSorter;
         [SerializeField] private GameInfoUI gameInfoUI;
+        [SerializeField] private FinishMenu finishMenu;
         
         private BaseState currentState;
 
@@ -44,6 +45,10 @@ namespace GDT.Statemachine
         public void ToggleMenu(bool open)
         {
             mainMenu.TogglePanel(open);
+        }
+        public void OpenFinishMenu()
+        {
+            finishMenu.TogglePanel(true);
         }
         private void OnDestroy()
         {

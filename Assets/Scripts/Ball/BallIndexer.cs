@@ -30,12 +30,6 @@ namespace GDT.Elements
         {
             indexesArray = new int[elementsCount];
             indexesArray.FillArrayRandomly(rangeOfNumbers);
-
-            foreach (var item in indexesArray)
-            {
-                Debug.Log(item);
-            }
-            
         }
     }
 }

@@ -9,6 +9,7 @@ public static class EventManager
     public static event Action onMenuOpenedEvent;
 
     public static event Action onSortingStartedEvent;
+    public static event Action onSortingFinishedEvent;
 
     public static void OnGameStarted()
     {
@@ -33,5 +34,9 @@ public static class EventManager
     public static void OnSortingStarted()
     {
         onSortingStartedEvent?.Invoke();
+    }
+    public static void OnSortingFinished()
+    {
+        onSortingFinishedEvent?.Invoke();
     }
 }

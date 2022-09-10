@@ -21,7 +21,7 @@ namespace GDT.Character
 
         private void Awake()
         {
-            characterAnimation = GetComponent<CharacterAnimation>();;
+            characterAnimation = GetComponent<CharacterAnimation>(); ;
             startPosition = transform.position;
         }
         private void OnEnable()
@@ -61,10 +61,10 @@ namespace GDT.Character
                 yield return StartCoroutine(characterAnimation.MoveTo(secondBall.transform.position.z));
                 yield return StartCoroutine(PickupBall(secondBall, false));
                 yield return StartCoroutine(PutDownBall(firstBall));
-                
+
                 hasBall = true;
                 currentBallIndex = ballSorter.Balls.IndexOf(secondBall);
-                
+
                 secondBall.transform.SetParent(rightHandSlot, true);
                 secondBall.ResetPositionAndRotation();
             }
@@ -72,12 +72,17 @@ namespace GDT.Character
             {
                 yield return StartCoroutine(characterAnimation.MoveTo(firstBall.desiredPos.z));
                 yield return StartCoroutine(PutDownBall(firstBall));
-                
+
                 hasBall = false;
                 currentBallIndex = GetFirstUnsortedBallIndex();
             }
 
             isSorting = true;
+
+            if (!CanSort())
+            {
+                EventManager.OnSortingFinished();
+            }
         }
 
         private bool CanSort()
